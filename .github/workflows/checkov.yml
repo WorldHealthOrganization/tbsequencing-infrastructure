@@ -1,0 +1,22 @@
+name: Checkov
+on:
+  push:
+    branches:
+        - main
+
+jobs:
+  checkov:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.8
+      - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: devops/envs/db-for-prod/
+          framework: terraform 
+      
