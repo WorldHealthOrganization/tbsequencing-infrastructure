@@ -84,9 +84,9 @@ Browse to AWS Secrets Manager. Click *Store a new secret*. On the first page, se
 
 | Key| 	Value (bolded in the example channel URL)|
 |---|---|
-|TENANT_ID|	https://<span></span>teams.microsoft.com/l/channel/**19%3Ae5eace25j32023jga835103358eapge3t8235%40thread.tacv2**/ChannelName?groupId=0d36500a-6023-419c-8c36-7e21f19b0135&tenantId=5fe61832-9f46-403b-a7db-cf9cf2e38199|
+|CHANNEL_ID|	https://<span></span>teams.microsoft.com/l/channel/**19%3Ae5eace25j32023jga835103358eapge3t8235%40thread.tacv2**/ChannelName?groupId=0d36500a-6023-419c-8c36-7e21f19b0135&tenantId=5fe61832-9f46-403b-a7db-cf9cf2e38199|
 |GROUP_ID|	https://<span></span>teams.microsoft.com/l/channel/19%3Ae5eace25j32023jga835103358eapge3t8235%40thread.tacv2/ChannelName?groupId=**0d36500a-6023-419c-8c36-7e21f19b0135**&tenantId=5fe61832-9f46-403b-a7db-cf9cf2e38199|
-|CHANNEL_ID|https://<span></span>teams.microsoft.com/l/channel/19%3Ae5eace25j32023jga835103358eapge3t8235%40thread.tacv2/ChannelName?groupId=0d36500a-6023-419c-8c36-7e21f19b0135&tenantId=**5fe61832-9f46-403b-a7db-cf9cf2e38199**|
+|TENANT_ID|https://<span></span>teams.microsoft.com/l/channel/19%3Ae5eace25j32023jga835103358eapge3t8235%40thread.tacv2/ChannelName?groupId=0d36500a-6023-419c-8c36-7e21f19b0135&tenantId=**5fe61832-9f46-403b-a7db-cf9cf2e38199**|
  
 Browse to the *Next* page. Choose as secret name *ms-teams* (case sensitive). Do not change anything else and click *Next* and *Store* until the secret creation.
 
