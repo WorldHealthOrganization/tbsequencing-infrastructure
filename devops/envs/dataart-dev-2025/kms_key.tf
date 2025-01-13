@@ -22,6 +22,20 @@ resource "aws_kms_key" "sns_key" {
         "Resource" : "*",
       },
       {
+        "Sid" : "Allow_Budgets_for_CMK",
+        "Effect" : "Allow",
+        "Principal" : {
+          "Service" : [
+            "budgets.amazonaws.com"
+          ]
+        },
+        "Action" : [
+          "kms:Decrypt",
+          "kms:GenerateDataKey*",
+        ],
+        "Resource" : "*",
+      },
+      {
         Sid    = "Allow administration of the key"
         Effect = "Allow"
         Principal = {
