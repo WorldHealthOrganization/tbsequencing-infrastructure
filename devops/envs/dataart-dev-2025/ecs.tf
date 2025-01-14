@@ -70,7 +70,7 @@ locals {
   backend_environments = [
     {
       "name" : "ALLOWED_HOSTS",
-      "value" : "${var.cf_domain},${module.alb.load_balancer_dns_name["lb"]}"
+      "value" : "${var.cf_domain},${module.alb.load_balancer_dns_name["lb"]},http://localhost:3000"
     },
     {
       "name" : "AWS_S3_REGION_NAME",
@@ -94,7 +94,7 @@ locals {
     },
     {
       "name" : "CORS_ALLOWED_ORIGINS",
-      "value" : "https://${var.cf_domain},https://${module.alb.load_balancer_dns_name["lb"]}"
+      "value" : "https://${var.cf_domain},https://${module.alb.load_balancer_dns_name["lb"]},http://localhost:3000"
     },
     {
       "name" : "REACT_APP_SERVER_ENDPOINT",
