@@ -14,7 +14,7 @@ resource "aws_instance" "amazon_linux_2" {
   security_groups      = [module.sg.security_group_id["bastion"]]
 
   root_block_device {
-    volume_size           = var.low_cost_implementation ? "8" : "20"
+    volume_size           = var.low_cost_implementation ? "20" : "20"
     volume_type           = "gp3"
     encrypted             = true
     delete_on_termination = true

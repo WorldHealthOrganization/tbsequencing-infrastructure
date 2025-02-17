@@ -223,6 +223,17 @@ locals {
         cidr_blocks                   = null
         description                   = "Needs access to the s3 prefix for the Gateway."
       },
+      rule05 = {
+        security_group_id             = module.sg.security_group_id["glue"]
+        destination_security_group_id = null
+        prefix_list_id                = null
+        from_port                     = null
+        to_port                       = null
+        protocol                      = "all"
+        cidr_blocks                   = "0.0.0.0/0"
+        description                   = "Needs access to internet for downloading python modules."
+      },
+
       # Rules for public-alb
       rule19 = {
         security_group_id             = module.sg.security_group_id["public-alb"]

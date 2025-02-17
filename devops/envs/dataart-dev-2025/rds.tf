@@ -27,7 +27,7 @@ module "db_default" {
   major_engine_version = "14"         # DB option group
   instance_class       = var.low_cost_implementation ? "db.t4g.small" : "db.t4g.small"
 
-  allocated_storage = var.low_cost_implementation ? 50 : 100
+  allocated_storage = var.low_cost_implementation ? 50 : 50
 
   ca_cert_identifier = "rds-ca-rsa2048-g1"
 
@@ -48,7 +48,7 @@ module "db_default" {
 
   maintenance_window      = "Mon:00:00-Mon:03:00"
   backup_window           = "03:00-06:00"
-  backup_retention_period = var.low_cost_implementation ? 1 : 7
+  backup_retention_period = var.low_cost_implementation ? 1 : 1
 
   enabled_cloudwatch_logs_exports = ["postgresql", "upgrade"]
 
