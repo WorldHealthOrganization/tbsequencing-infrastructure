@@ -48,3 +48,7 @@ data "aws_acm_certificate" "us-east-1" {
 data "aws_ec2_managed_prefix_list" "s3_prefix_link" {
   name = "com.amazonaws.${var.aws_region}.s3"
 }
+
+resource "random_string" "custom_header_value" {
+  length = 16
+}

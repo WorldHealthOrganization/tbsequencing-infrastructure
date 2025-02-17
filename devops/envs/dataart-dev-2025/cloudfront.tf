@@ -1,5 +1,5 @@
 module "cloudfront" {
-  source                = "git::https://github.com/finddx/seq-treat-tbkb-terraform-modules.git//cloudfront?ref=cf-v1.8"
+  source                = "git::https://github.com/finddx/seq-treat-tbkb-terraform-modules.git//cloudfront?ref=cf-v1.9"
   https_certificate_arn = var.aws_region == "us-east-1" ? data.aws_acm_certificate.main-region.arn : data.aws_acm_certificate.us-east-1[0].arn
   dns_name              = var.cf_domain
   elb_dns_name          = module.alb.load_balancer_dns_name["lb"]
@@ -10,4 +10,5 @@ module "cloudfront" {
   project_name          = var.project_name
   module_name           = var.module_name
   environment           = var.environment
+  custom_header_value   = resource.random_string.custom_header_value.result
 }
