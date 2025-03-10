@@ -250,6 +250,7 @@ data "aws_iam_policy_document" "glue_executions" {
       "glue:StartJobRun",
       "glue:StopCrawler",
       "glue:ResetJobBookmark",
+      "glue:BatchStopJobRun",
     ]
     resources = [
       "*"
