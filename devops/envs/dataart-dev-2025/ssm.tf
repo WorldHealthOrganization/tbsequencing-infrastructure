@@ -40,3 +40,10 @@ resource "aws_ssm_parameter" "db_instance_resource_id" {
   value  = module.db_default.db_instance_resource_id
   key_id = "alias/aws/ssm"
 }
+
+resource "aws_ssm_parameter" "static_bucket_name" {
+  name   = "/${var.environment}/static_bucket_name"
+  type   = "SecureString"
+  value  = module.cloudfront.static-bucket
+  key_id = "alias/aws/ssm"
+}
