@@ -47,3 +47,10 @@ resource "aws_ssm_parameter" "static_bucket_name" {
   value  = module.cloudfront.static-bucket
   key_id = "alias/aws/ssm"
 }
+
+resource "aws_ssm_parameter" "sequence_data_bucket_name" {
+  name   = "/${var.environment}/sequence_data_bucket_name"
+  type   = "SecureString"
+  value  = module.s3.bucket_id["backend-sequence-data"]
+  key_id = "alias/aws/ssm"
+}
