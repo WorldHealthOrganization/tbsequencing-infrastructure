@@ -191,6 +191,6 @@ For each repository, you will need to create a new environment matching the valu
 |my-github-actions-frontend| ${GITHUB_ORG}/${REPO_PREFIX}-frontend:${ENV}|copying static files to S3, invalidating files from Cloudfront distribution|
 |my-github-actions-backend|${GITHUB_ORG}/${REPO_PREFIX}-backend:${ENV}|pushing docker images to ECR, copying static files to S3, managing ECS tasks|
 |my-github-actions-push-docker-image|${GITHUB_ORG}/${REPO_PREFIX}-backend:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-bioinfoanalysis:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-ncbi-sync:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-antimalware:${ENV}|pushing docker images to ECR|
-|my-github-actions-terraform|${REPO_PREFIX}/${REPO_PREFIX}-infrastructure:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-bioinfoanalysis:${environment} ${GITHUB_ORG}/${REPO_PREFIX}-ncbi-sync:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-antimalware:${ENV}|Admin|
+|my-github-actions-terraform|${REPO_PREFIX}/${REPO_PREFIX}-infrastructure:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-bioinfoanalysis:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-ncbi-sync:${ENV} ${GITHUB_ORG}/${REPO_PREFIX}-antimalware:${ENV}|Admin|
 
 You can check our predefined GitHub Actions Workflows jobs [there](https://github.com/finddx/seq-treat-tbkb-github-workflows/).
