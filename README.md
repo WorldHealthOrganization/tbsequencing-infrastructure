@@ -4,7 +4,7 @@ Owned by the Global Tuberculosis Programme, GTB, Geneva Switzerland. References:
 # Overview
 This repository holds all terraform configuration for deploying the backbone infrastructure of the tbsequencing web platform. This repository must be deployed first, before any other.  
 
-For serving the terraform backend, an AWS hosted backend using S3 and dynamodb is given as example in **backend/template**. However, you can use a local backend for deploying the solution.
+For serving the terraform backend, an AWS hosted backend using S3 and dynamodb is given as example in _devops/backend/template_. However, you can use a local backend for deploying the solution.
 
 ## Terraform variables
 
@@ -19,9 +19,10 @@ Use [environment variables](https://developer.hashicorp.com/terraform/cli/config
 |*no_reply_email*|none||
 |*aws_region*|us-east-1||
 |*low_cost_implementation*|true|See [below](#low-cost-environment) for the comparison of low versus high cost environments|
+|*waf*|true|Switch to deploy Web Application Firewall to the environment|
 |*chatbot_notifs_implementation*|false|Set to true if you want to deploy error notifications to Microsoft Teams|
 |*gh_action_roles*|false|Set this to true to create (github actions) [CICD](#github-actions-cicd) roles for terraform, backend and frontend jobs.  ⚠️Do not set to true if you do not understand the security implications⚠️|
-|*github_org_name*|empty string|Used for setting up which gh organisation can assume the CICD roles. For the current repo, value would be *finddx*|
+|*github_org_name*|empty string|Used for setting up which gh organisation can assume the CICD roles. For the current repo, value would be *WorldHealthOrganization*|
 |*github_repo_prefix*|empty string|Used for setting up which repos can assume the CICD roles. For the current repo, value would be *tbsequencing*.|
 
 ## Low cost environment
@@ -29,10 +30,10 @@ The default low cost environment will bill approximately 3 USD per day. If you s
 
 The low cost environment has: 
 
-1. no web application firewall (WAF)
-2. no private subnet, no NAT Gateway (i.e. all resources sit in public subnets)
-3. lower computational resources for RDS, ECS Fargate task, EC2 bastion
+1. no private subnet, no NAT Gateway (i.e. all resources sit in public subnets)
+2. lower computational resources for RDS, ECS Fargate task, EC2 bastion
 
+In addition, if you set *waf* to false, it will have no Web Application Firewall built in.
 
 # Checklist for deploying
 - Admin access to an AWS vanilla account
@@ -56,13 +57,13 @@ You will be redirected to the overview of the new certificate request you just c
 
 Share these values with your IT services. Once they have inserted the records, the certificate status should promptly be updated to *Issued*.  
 
-## ⚠️ Deploying somewhere else than us-east-1⚠️
+## ⚠️ Deploying somewhere else than _us-east-1_⚠️
 **If you are not deploying to us-east-1, you'll need to create two certificates:**
 
-- One in us-east-1
+- One in _us-east-1_
 - One in the region you are deploying to
 
-This is because the Cloudfront CDN distribution is a global service and needs its certificate in us-east-1 ([source](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-certificate-issuer)).
+This is because the Cloudfront CDN distribution is a global service and needs its certificate in _us-east-1_ ([source](https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html#https-requirements-certificate-issuer)).
 
 However, your elastic load balancer listener will need a certificate sitting in the region where all your resources will be deployed. You will then need two certificates. 
 
@@ -74,7 +75,7 @@ The aws bot must be invited into the team. Follow Step 1 only of this [tutorial]
 
 Create the channel on the team. Be careful to set the channel type to *Standard*. The aws bot cannot write in private channels.  
 
-Copy the link of the channel. Browse to [AWS Chatbox](https://us-east-1.console.aws.amazon.com/chatbot). Under *Configure a client*, select MS Teams and paste the channel link copied before.  
+Copy the link of the channel. Browse to [AWS Chatbot](https://us-east-1.console.aws.amazon.com/chatbot). Under *Configure a client*, select MS Teams and paste the channel link copied before.  
 
 You will be redirected to authorize access to AWS. If you don't have enough administrative rights to that, reach out to your IT services.  
  
@@ -93,7 +94,7 @@ Browse to the *Next* page. Choose as secret name *ms-teams* (case sensitive). Do
 # Deployment
 
 ## Terraform backend
-The terraform backend can be deployed using terraform from the local workstation, using the configuration files provided in **backend/template**. Otherwise you can also use a local provider.  
+The terraform backend can be deployed using terraform from the local workstation, using the configuration files provided in *devops/backend/template*. Otherwise you can also use a local provider.  
 
 The data.tf holds the few dependencies needed for the deployment :
 
@@ -113,7 +114,7 @@ data "aws_acm_certificate" "main-region" {
 }
 ```
 
-If you are not deploying to us-east-1, another certificate will be read, in us-east-1 (see [above](#deploying-somewhere-else-than-us-east-1))
+If you are not deploying to *us-east-1*, another certificate will be read, in  *us-east-1* (see [above](#deploying-somewhere-else-than-us-east-1))
  
 ```
 data "aws_acm_certificate" "us-east-1" {
