@@ -77,7 +77,7 @@ Create the channel on the team. Be careful to set the channel type to *Standard*
 
 Copy the link of the channel. Browse to [AWS Chatbot](https://us-east-1.console.aws.amazon.com/chatbot). Under *Configure a client*, select MS Teams and paste the channel link copied before.  
 
-You will be redirected to authorize access to AWS. If you don't have enough administrative rights to that, reach out to your IT services.  
+You will be redirected to authorize access to AWS. If you don't have enough administrative rights to do that, reach out to your IT services.  
  
 ## Creating AWS Secrets
 
@@ -96,7 +96,7 @@ Browse to the *Next* page. Choose as secret name *ms-teams* (case sensitive). Do
 ## Terraform backend
 The terraform backend can be deployed using terraform from the local workstation, using the configuration files provided in *devops/backend/template*. Otherwise you can also use a local provider.  
 
-The data.tf holds the few dependencies needed for the deployment :
+The _data.tf_ holds the few dependencies needed for the deployment :
 
 ```
 data "aws_secretsmanager_secret" "ms_teams" {
@@ -124,7 +124,7 @@ data "aws_acm_certificate" "us-east-1" {
 }
 ```
 
-You can't deploy until the(/both) ACM Certificate status(es) is(/are) *Issued*.
+You can't deploy until the (both) ACM Certificate status(es) is (are) *Issued*.
  
 
 # Post deployment of core infrastructure
@@ -159,14 +159,11 @@ ALTER USER rdsiamuser WITH login;
 GRANT CREATE ON DATABASE tbkbdb TO rdsiamuser;
 ```
 
-Rotate the master password via AWS Secrets Manager after the user creation. 
+Rotate the master password via AWS Secrets Manager after the user creation. In all cases, the master password is rotated automatically every week.
 
 ## Setting up redirection
 After successful deployment, the Cloudfront distribution of your website will be available. You can retrieve the distribution domain name either from the terraform outputs or from the AWS Web Console by browsing to Cloudfront. Share that distribution domain with your IT services, asking them to insert a CNAME record from your chosen domain name to the Cloudfront distribution.  
 
-Share these values with your IT services for a CNAME record insertion.
- 
- 
 ## Filling up secret values
 AWS Secrets have been created by the infrastructure repository. 
 
@@ -177,8 +174,8 @@ Values must be filled in accordingly via the Web Console for two of them. The se
 |adfs|ADFS_CLIENT_ID|Secrets for configuring Microsoft Entra ID tenant. Described in the [backend](https://github.com/finddx/tbsequencing-backend) repository|
 |adfs|ADFS_TENANT_ID|Secrets for configuring Microsoft Entra ID tenant. Described in the [backend](https://github.com/finddx/tbsequencing-backend) repository.|
 |adfs|ADFS_CLIENT_SECRET|Secrets for configuring Microsoft Entra ID tenant. Described in the [backend](https://github.com/finddx/tbsequencing-backend) repository.|
-|ncbi-entrez|email|Authenticating for NCBI API. These can be requested automatically by registering an account at the NCBI.|
-|ncbi-entrez|api_key|Authenticating for NCBI API. These can be requested automatically by registering an account at the NCBI.|
+|ncbi-entrez|email|Authenticating for NCBI API. These can be requested freely by registering an account at the NCBI.|
+|ncbi-entrez|api_key|Authenticating for NCBI API. These can be requested freely by registering an account at the NCBI.|
 
 # GitHub Actions CICD
 
