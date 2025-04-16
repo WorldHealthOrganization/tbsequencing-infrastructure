@@ -48,3 +48,7 @@ data "aws_ssm_parameter" "ms_teams_group_id" {
 data "aws_ssm_parameter" "ms_teams_channel_id" {
   name = "/${var.environment}/ms_teams_channel_id"
 }
+
+resource "random_string" "header" {
+  length = 16
+}

@@ -15,20 +15,20 @@ locals {
   repo_mappings = {
     "my-github-actions-frontend" = {
       repos = [
-        "repo:finddx/seq-treat-tbkb-frontend:environment:${var.environment}"
+        "repo:WorldHealthOrganization/tbsequencing-frontend:environment:${var.environment}"
       ]
     }
     "my-github-actions-backend" = {
       repos = [
-        "repo:finddx/seq-treat-tbkb-backend:environment:${var.environment}"
+        "repo:WorldHealthOrganization/tbsequencing-backend:environment:${var.environment}"
       ]
     }
     "my-github-actions-push-glue" = {
       repos = [
-        "repo:finddx/seq-treat-tbkb-bioinfoanalysis:environment:${var.environment}",
-        "repo:finddx/seq-treat-tbkb-antimalware:environment:${var.environment}",
-        "repo:finddx/seq-treat-tbkb-ncbi-sync:environment:${var.environment}",
-        "repo:finddx/seq-treat-tbkb-backend:environment:${var.environment}"
+        "repo:WorldHealthOrganization/tbsequencing-bioinfoanalysis:environment:${var.environment}",
+        "repo:WorldHealthOrganization/tbsequencing-antimalware:environment:${var.environment}",
+        "repo:WorldHealthOrganization/tbsequencing-ncbi-sync:environment:${var.environment}",
+        "repo:WorldHealthOrganization/tbsequencing-backend:environment:${var.environment}"
       ]
     }
   }
@@ -59,6 +59,17 @@ locals {
       description = ""
       policy      = data.aws_iam_policy_document.glue_executions.json
     },
+    {
+      name        = "batch-jobs-policy"
+      description = ""
+      policy      = data.aws_iam_policy_document.batch_jobs.json
+    },
+    {
+      name        = "s3-restore-policy"
+      description = ""
+      policy      = data.aws_iam_policy_document.s3_restore.json
+    },
+
     {
       name        = "backend-static-s3"
       description = ""
@@ -115,6 +126,14 @@ locals {
     bastion_glue = {
       role   = module.roles.role_name["ec2"]
       policy = module.policies.policy_arn["glue-executions-policy"]
+    }
+    bastion_batch = {
+      role   = module.roles.role_name["ec2"]
+      policy = module.policies.policy_arn["batch-jobs-policy"]
+    }
+    bastion_s3_restore = {
+      role   = module.roles.role_name["ec2"]
+      policy = module.policies.policy_arn["s3-restore-policy"]
     }
     bastion_role_rds_access = {
       role   = module.roles.role_name["ec2"]

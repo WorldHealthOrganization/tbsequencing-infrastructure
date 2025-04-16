@@ -258,6 +258,32 @@ data "aws_iam_policy_document" "glue_executions" {
   }
 }
 
+data "aws_iam_policy_document" "batch_jobs" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "batch:TerminateJob",
+      "batch:DeleteComputeEnvironment",
+    ]
+    resources = [
+      "*"
+    ]
+  }
+}
+
+data "aws_iam_policy_document" "s3_restore" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "s3:RestoreObject",
+      "s3:ListBucket*"
+    ]
+    resources = [
+      "*"
+    ]
+  }
+}
+
 data "aws_iam_policy_document" "frontend-static-s3" {
   statement {
     effect = "Allow"

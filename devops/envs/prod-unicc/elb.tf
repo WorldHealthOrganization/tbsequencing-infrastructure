@@ -1,5 +1,5 @@
 module "alb" {
-  source                  = "git::git@bitbucket.org:awsopda/who-seq-treat-tbkb-terraform-modules.git//elb?ref=elb-v1.0"
+  source                  = "git::git@bitbucket.org:awsopda/who-seq-treat-tbkb-terraform-modules.git//elb?ref=elb-v1.1"
   load_balancers          = local.load_balancers
   environment             = var.environment
   module_name             = var.module_name
@@ -61,6 +61,13 @@ locals {
         {
           type   = "path_pattern"
           values = ["/*"]
+        },
+        {
+          type             = "http_header"
+          http_header_name = "X-custom-header"
+          values = [
+            resource.random_string.header.result
+          ]
         }
       ]
     }

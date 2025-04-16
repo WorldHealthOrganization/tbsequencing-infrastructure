@@ -33,3 +33,15 @@ resource "aws_ssm_parameter" "db_instance_resource_id" {
   type  = "String"
   value = module.db_default.db_instance_resource_id
 }
+
+resource "aws_ssm_parameter" "sequence_data_bucket_name" {
+  name  = "/${var.environment}/sequence_data_bucket_name"
+  type  = "SecureString"
+  value = module.s3.bucket_id["backend-sequence-data"]
+}
+
+resource "aws_ssm_parameter" "static_files_bucket_name" {
+  name  = "/${var.environment}/static_files_bucket_name"
+  type  = "SecureString"
+  value = module.cloudfront.static-bucket
+}

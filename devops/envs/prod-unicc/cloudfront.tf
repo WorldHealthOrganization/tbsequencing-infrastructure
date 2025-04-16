@@ -1,5 +1,5 @@
 module "cloudfront" {
-  source                    = "git::git@bitbucket.org:awsopda/who-seq-treat-tbkb-terraform-modules.git//cloudfront?ref=cf-v1.7"
+  source                    = "git::git@bitbucket.org:awsopda/who-seq-treat-tbkb-terraform-modules.git//cloudfront?ref=cf-v1.9-prod"
   static_bucket_name        = "${local.prefix}-static-files"
   logs_bucket_name          = "${local.prefix}-cloudfront-logs"
   django_static_bucket_name = "${local.prefix}-django-static-files"
@@ -12,4 +12,5 @@ module "cloudfront" {
   restrictions              = var.cf_restrictions
   project_name              = var.project_name
   environment               = var.environment
+  custom_header_value       = resource.random_string.header.result
 }

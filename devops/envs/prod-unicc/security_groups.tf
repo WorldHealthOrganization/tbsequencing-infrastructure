@@ -53,7 +53,7 @@ locals {
         to_port                  = 65535
         protocol                 = "TCP"
         cidr_blocks              = null
-        description              = "Allow all trafic to, required by Glue"
+        description              = "Allow all trafic, required by Glue"
       },
 
       # Rules for public-alb

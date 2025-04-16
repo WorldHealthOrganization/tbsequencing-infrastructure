@@ -1,3 +1,4 @@
+# Latest Amazon Linux 2 AMI
 locals {
   ec2_instance_type = "t3.medium"
   iam_ec2_role_name = module.roles.role_name["ec2"]
