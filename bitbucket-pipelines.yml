@@ -28,8 +28,6 @@ definitions:
       name: Plan-all
       oidc: true
       script:
-        - apk add --update-cache python3
-        - ln -s /usr/bin/python3 /usr/bin/python
         - export AWS_REGION=us-east-1
         - export AWS_ROLE_ARN=arn:aws:iam::$AWS_ACCOUNT_ID:role/unicc-bitbucket-role
         - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
@@ -48,8 +46,6 @@ definitions:
       name: Apply-all
       oidc: true
       script:
-        - apk add --update-cache python3
-        - ln -s /usr/bin/python3 /usr/bin/python
         - export AWS_REGION=us-east-1
         - export AWS_ROLE_ARN=arn:aws:iam::$AWS_ACCOUNT_ID:role/unicc-bitbucket-role
         - export AWS_WEB_IDENTITY_TOKEN_FILE=$(pwd)/web-identity-token
