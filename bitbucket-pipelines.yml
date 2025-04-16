@@ -1,5 +1,5 @@
 image:
-  name: hashicorp/terraform:1.1.0
+  name: hashicorp/terraform:1.9.5
 
 services:
   - docker
