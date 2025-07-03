@@ -4,7 +4,7 @@ data "aws_ami" "amazon_linux_2_latest" {
 
   filter {
     name   = "name"
-    values = ["ICC Golden AL2023 standard x86_64*"]
+    values = ["ICC Golden AL2023 standard x86_64 20240311032417"]
   }
   filter {
     name   = "architecture"
