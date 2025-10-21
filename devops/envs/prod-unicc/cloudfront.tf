@@ -1,5 +1,5 @@
 module "cloudfront" {
-  source                    = "git::git@bitbucket.org:awsopda/who-seq-treat-tbkb-terraform-modules.git//cloudfront?ref=cf-v1.9-prod"
+  source                    = "git::git@bitbucket.org:awsopda/who-seq-treat-tbkb-terraform-modules.git//cloudfront?ref=cf-v1.10-prod"
   static_bucket_name        = "${local.prefix}-static-files"
   logs_bucket_name          = "${local.prefix}-cloudfront-logs"
   django_static_bucket_name = "${local.prefix}-django-static-files"
