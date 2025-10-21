@@ -21,6 +21,7 @@ locals {
     "genomicsworkflow-snpeff",
     "genomicsworkflow-spades",
     "genomicsworkflow-sra-tools",
+    "genomicsworkflow-seqkit",
     "ncbi-sync",
     "clamav"
   ]
