@@ -65,6 +65,11 @@ locals {
       policy      = data.aws_iam_policy_document.batch_jobs.json
     },
     {
+      name        = "efs-policy"
+      description = ""
+      policy      = data.aws_iam_policy_document.efs.json
+    },
+    {
       name        = "s3-restore-policy"
       description = ""
       policy      = data.aws_iam_policy_document.s3_restore.json
@@ -130,6 +135,10 @@ locals {
     bastion_batch = {
       role   = module.roles.role_name["ec2"]
       policy = module.policies.policy_arn["batch-jobs-policy"]
+    }
+    bastion_efs = {
+      role   = module.roles.role_name["ec2"]
+      policy = module.policies.policy_arn["efs-policy"]
     }
     bastion_s3_restore = {
       role   = module.roles.role_name["ec2"]

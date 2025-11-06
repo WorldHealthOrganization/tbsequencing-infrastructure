@@ -264,6 +264,21 @@ data "aws_iam_policy_document" "batch_jobs" {
     actions = [
       "batch:TerminateJob",
       "batch:DeleteComputeEnvironment",
+      "batch:DeregisterJobDefinition",
+    ]
+    resources = [
+      "*"
+    ]
+  }
+}
+
+
+data "aws_iam_policy_document" "efs" {
+  statement {
+    effect = "Allow"
+    actions = [
+      "efs:DeleteMountTarget",
+      "efs:DeleteFileSystem",
     ]
     resources = [
       "*"
